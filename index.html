@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,21 +12,38 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
-    <div class="page-wrapper">
+  <body class="bg-light-subtle">
+    <div class="page-wrapper container py-3 py-md-4">
       <!------- Header / Branding ------->
-      <header class="site-header">
+      <header class="site-header shadow-sm">
         <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
         <h1 class="site-title">Smart Routine &amp; Product Advisor</h1>
       </header>
 
       <!-- Category Filter -->
       <div class="search-section">
+        <label for="productSearch" class="visually-hidden"
+          >Search products</label
+        >
+        <input
+          id="productSearch"
+          type="search"
+          placeholder="Search products by name, brand, or keyword"
+          autocomplete="off"
+          dir="auto"
+        />
+
         <select id="categoryFilter">
-          <option value="" disabled selected>Choose a Category</option>
+          <option value="" selected>Choose a Category</option>
           <option value="cleanser">Cleansers</option>
           <option value="moisturizer">Moisturizers & Treatments</option>
           <option value="haircare">Haircare</option>
@@ -43,18 +60,25 @@
       <div id="productsContainer" class="products-grid"></div>
 
       <!-- Selected Products -->
-      <div class="selected-products">
+      <div class="selected-products shadow-sm">
         <h2>Selected Products</h2>
         <div id="selectedProductsList"></div>
-        <button id="generateRoutine" class="generate-btn">
+        <button
+          id="clearSelections"
+          class="clear-btn btn btn-sm btn-outline-secondary"
+          type="button"
+        >
+          Clear All Selections
+        </button>
+        <button id="generateRoutine" class="generate-btn btn btn-danger">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
         </button>
       </div>
 
       <!------- Chat Area ------->
-      <section class="chatbox">
+      <section class="chatbox shadow-sm">
         <h2>Let's Build Your Routine</h2>
-        <div id="chatWindow" class="chat-window"></div>
+        <div id="chatWindow" class="chat-window" aria-live="polite"></div>
 
         <form id="chatForm" class="chat-form">
           <label for="userInput" class="visually-hidden">Message</label>
@@ -64,6 +88,7 @@
             type="text"
             placeholder="Ask me about products or routines…"
             autocomplete="off"
+            dir="auto"
             required
           />
           <button type="submit" id="sendBtn">
@@ -85,8 +110,11 @@
       </footer>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>
